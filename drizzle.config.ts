@@ -1,10 +1,12 @@
-import type { Config } from "drizzle-kit";
+import "dotenv/config";
+import { defineConfig, type Config } from "drizzle-kit";
+import { env } from "./src/env";
 
-export default {
-  schema: "./src/db/schema/index.ts",
+export default defineConfig({
   out: "./drizzle",
+  schema: "./src/db/schema/index.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: "postgres://docker:docker@localhost:5432/six-health-db",
+    url: env.DATABASE_URL,
   },
-} satisfies Config;
+} satisfies Config);
