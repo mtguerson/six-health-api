@@ -17,7 +17,7 @@ export const createUser = new Elysia().post(
 
     await db.insert(users).values({ name, email, products });
 
-    set.status = 204;
+    set.status = 201;
   },
   {
     body: t.Object({
