@@ -8,6 +8,7 @@
     "migrate": "bun run src/db/migrate.ts"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.43.1",
     "elysia": "latest",
