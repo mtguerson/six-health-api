@@ -1,21 +1,17 @@
 import Elysia, { t } from "elysia";
-import { db } from "../../db/connection";
-import { users } from "../../db/schema";
-import { eq } from "drizzle-orm";
+import { userService } from "../../services/user";
 
 export const createUser = new Elysia().post(
   "/create-user",
   async ({ body, set }) => {
     const { name, email, products } = body;
 
-    const user = await db.select().from(users).where(eq(users.email, email));
+    const result = await userService.createUser({ name, email, products });
 
-    if (user.length > 0) {
+    if (result.exists) {
       set.status = 400;
       return "User already exists";
     }
-
-    await db.insert(users).values({ name, email, products });
 
     set.status = 201;
   },
