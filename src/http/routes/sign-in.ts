@@ -16,6 +16,7 @@ export const signIn = new Elysia().post(
     }
 
     set.status = 200;
+    return { id: user[0].id };
   },
   {
     body: t.Object({
