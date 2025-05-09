@@ -19,7 +19,7 @@ export const cartpanda = new Elysia().post(
     };
   }) => {
     try {
-      const { order } = body as WebhookPayload;
+      const { order } = body;
       const { customer, email, line_items } = order;
 
       const result = await userService.createUser({
